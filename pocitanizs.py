@@ -26,16 +26,16 @@ class Application(tk.Tk):
         self.v = StringVar()
         self.v.set('')
         
-        self.rdbplus = Radiobutton(self, text = u'+', variable=self.v, value='+' , font='Arial 18', command=self.plus)
+        self.rdbplus = Radiobutton(self, text = u'+', variable=self.v, value='+' , font='Arial 20', command=self.plus)
         self.rdbplus.pack(anchor='w')
         
-        self.rdbminus = Radiobutton(self, text = u'-', variable=self.v, value='-', font='Arial 18', command=self.minus)
+        self.rdbminus = Radiobutton(self, text = u'-', variable=self.v, value='-', font='Arial 20', command=self.minus)
         self.rdbminus.pack(anchor='w')
         
-        self.rdbkrat = Radiobutton(self, text = u'*', variable=self.v, value='*' , font='Arial 18', command=self.krat)
+        self.rdbkrat = Radiobutton(self, text = u'*', variable=self.v, value='*' , font='Arial 20', command=self.krat)
         self.rdbkrat.pack(anchor='w')
         
-        self.rdbdeleno = Radiobutton(self, text = u'/', variable=self.v, value='/' , font='Arial 18', command=self.deleno)
+        self.rdbdeleno = Radiobutton(self, text = u'/', variable=self.v, value='/' , font='Arial 20', command=self.deleno)
         self.rdbdeleno.pack(anchor='w')
         
         
@@ -48,25 +48,25 @@ class Application(tk.Tk):
         self.inta = IntVar()
         self.inta.set('')
         
-        self.entcisloa = Entry(self.lblfr,state='readonly', text=None, width=5, font='Arial 18', textvariable=self.inta)
+        self.entcisloa = Entry(self.lblfr,state='readonly', text=None, width=5, font='Arial 20', textvariable=self.inta)
         self.entcisloa.grid(row=1, column=1)
         
-        self.znammess = Message(self.lblfr, font='Arial 18', textvariable=self.v)
+        self.znammess = Message(self.lblfr, font='Arial 20', textvariable=self.v)
         self.znammess.grid(row=1, column=2)
         
         self.intb = IntVar()
         self.intb.set('')
         
-        self.entcislob = Entry(self.lblfr,state='readonly', text=None, width=5, font='Arial 18', textvariable=self.intb)
+        self.entcislob = Entry(self.lblfr,state='readonly', text=None, width=5, font='Arial 20', textvariable=self.intb)
         self.entcislob.grid(row=1, column=3)
         
-        self.rovmess = Message(self.lblfr, text=u'=', font='Arial 18')
+        self.rovmess = Message(self.lblfr, text=u'=', font='Arial 20')
         self.rovmess.grid(row=1, column=4)
         
-        self.intvys = IntVar()
+        self.intvys = StringVar()
         self.intvys.set('')
         
-        self.entcislob = Entry(self.lblfr,state='readonly', text=None, width=5, font='Arial 18', textvariable=self.intvys)
+        self.entcislob = Entry(self.lblfr,state='readonly', text=None, width=5, font='Arial 20', textvariable=self.intvys)
         self.entcislob.grid(row=1, column=5)
         
         self.prkButton = tk.Button(self, text='Nový příklad', command=self.priklad)
@@ -74,6 +74,41 @@ class Application(tk.Tk):
         
         self.vypButton = tk.Button(self, text='Výpočet', command=self.vypocet)
         self.vypButton.pack()
+        
+        self.intuzi = StringVar()
+        self.intuzi.set('')
+        
+        self.entvys = Entry(self, text=None, width=5, font='Arial 20', textvariable=self.intuzi)
+        self.entvys.pack()
+        
+        self.zkoButton = tk.Button(self, text='Zkontroluj výsledek', command=self.zkontroluj)
+        self.zkoButton.pack()
+        
+        self.pormess = Message(self, text='', font='Arial 15')
+        self.pormess.pack()
+        
+        self.lblfrstat = LabelFrame(self, text='Statistika', padx=30)
+        self.lblfrstat.pack()
+        
+        self.sprmess = Message(self.lblfrstat, text='Správně:', font='Arial 18',pady=25)
+        self.sprmess.grid(row=1,column=1)
+        
+        self.intspr = IntVar()
+        self.intspr.set(0)
+        
+        self.entvys = Entry(self.lblfrstat, text=None, width=3, font='Arial 20', textvariable=self.intspr)
+        self.entvys.grid(row=1,column=2)
+        
+        self.spamess = Message(self.lblfrstat, text='Špatně:', font='Arial 18',pady=25)
+        self.spamess.grid(row=1, column=3)
+        
+        self.intspa = IntVar()
+        self.intspa.set(0)
+        
+        self.entvys = Entry(self.lblfrstat, text=None, width=3, font='Arial 20', textvariable=self.intspa)
+        self.entvys.grid(row=1,column=4)
+        
+        
         
         #####ESC
         self.bind("<Escape>", self.quit)
@@ -124,6 +159,23 @@ class Application(tk.Tk):
         if priklad == "/":
             self.rdbdeleno.invoke()
     
+    def zkontroluj(self):
+        self.intvys.set(self.vys)
+        vys = self.intvys.get()
+        uzivatel = self.intuzi.get()
+        if vys == uzivatel:
+            self.pormess.configure(text='Správný výsledek')
+            spravne = self.intspr.get()
+            spravne = spravne + 1
+            self.intspr.set(spravne)
+            self.prkButton.invoke()
+        else:
+            self.pormess.configure(text='Špatný výsledek')
+            spatne = self.intspa.get()
+            spatne = spatne + 1
+            self.intspa.set(spatne)
+            self.prkButton.invoke()
+
     
     def quit(self, event=None):
         super().quit()

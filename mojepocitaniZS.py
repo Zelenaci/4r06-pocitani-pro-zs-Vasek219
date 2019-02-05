@@ -113,6 +113,7 @@ class Application(tk.Tk):
         
         #####ESC
         self.bind("<Escape>", self.quit)
+        self.bind("<Return>", self.zkontroluj)
         
     def plus(self):
         self.intvys.set('')
@@ -160,7 +161,7 @@ class Application(tk.Tk):
         if priklad == "/":
             self.rdbdeleno.invoke()
     
-    def zkontroluj(self):
+    def zkontroluj(self,x):
         self.intvys.set(self.vys)
         vys = self.intvys.get()
         uzivatel = self.intuzi.get()

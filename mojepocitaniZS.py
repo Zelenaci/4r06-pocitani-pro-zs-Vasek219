@@ -97,7 +97,7 @@ class Application(tk.Tk):
         self.intspr = IntVar()
         self.intspr.set(0)
         
-        self.entvys = Entry(self.lblfrstat, text=None, width=3, font='Arial 20', textvariable=self.intspr)
+        self.entvys = Entry(self.lblfrstat, text=None, width=3, font='Arial 20', textvariable=self.intspr, fg='white', bg='green')
         self.entvys.grid(row=1,column=2)
         
         self.spamess = Message(self.lblfrstat, text='Špatně:', font='Arial 18',pady=25)
@@ -106,7 +106,7 @@ class Application(tk.Tk):
         self.intspa = IntVar()
         self.intspa.set(0)
         
-        self.entvys = Entry(self.lblfrstat, text=None, width=3, font='Arial 20', textvariable=self.intspa)
+        self.entvys = Entry(self.lblfrstat, text=None, width=3, font='Arial 20', textvariable=self.intspa, fg='white', bg='red')
         self.entvys.grid(row=1,column=4)
         
         

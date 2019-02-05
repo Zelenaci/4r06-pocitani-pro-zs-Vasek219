@@ -114,6 +114,7 @@ class Application(tk.Tk):
         #####ESC
         self.bind("<Escape>", self.quit)
         self.bind("<Return>", self.zkontroluj)
+        self.bind("<KP_Enter>", self.zkontroluj)
         
     def plus(self):
         self.intvys.set('')

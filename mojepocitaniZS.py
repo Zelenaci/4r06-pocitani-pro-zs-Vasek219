@@ -166,6 +166,7 @@ class Application(tk.Tk):
         self.intvys.set(self.vys)
         vys = self.intvys.get()
         uzivatel = self.intuzi.get()
+        self.intuzi.set('')
         if vys == uzivatel:
             self.pormess.configure(text='Správný výsledek')
             spravne = self.intspr.get()

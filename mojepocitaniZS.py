@@ -162,7 +162,7 @@ class Application(tk.Tk):
         if priklad == "/":
             self.rdbdeleno.invoke()
     
-    def zkontroluj(self,x):
+    def zkontroluj(self,event=None):
         self.intvys.set(self.vys)
         vys = self.intvys.get()
         uzivatel = self.intuzi.get()

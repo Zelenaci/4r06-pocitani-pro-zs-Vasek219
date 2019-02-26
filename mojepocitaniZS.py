@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 """
 Created on Tue Jan 22 09:57:33 2019
-
 @author: lov35174
 """
 
 import tkinter as tk
 from tkinter import Label,Radiobutton, IntVar, Entry, LabelFrame, Message, StringVar
 from random import randint
+from tkinter import messagebox
 
 class Application(tk.Tk):
     name = 'ZS'
@@ -25,7 +25,25 @@ class Application(tk.Tk):
         ######RADIOBUTTONS
         
         self.v = StringVar()
-        self.v.set('')
+        self.v.set('+')
+        
+        self.intvys = StringVar()
+        self.intvys.set('')
+
+        self.inta = IntVar()
+        self.inta.set('')
+        
+        self.intb = IntVar()
+        self.intb.set('')
+        
+        self.intuzi = StringVar()
+        self.intuzi.set('')
+        
+        self.intspr = IntVar()
+        self.intspr.set(0)
+        
+        self.intspa = IntVar()
+        self.intspa.set(0)
         
         self.rdbplus = Radiobutton(self, text = u'+', variable=self.v, value='+' , font='Arial 20', command=self.plus)
         self.rdbplus.pack(anchor='w')
@@ -39,34 +57,25 @@ class Application(tk.Tk):
         self.rdbdeleno = Radiobutton(self, text = u'/', variable=self.v, value='/' , font='Arial 20', command=self.deleno)
         self.rdbdeleno.pack(anchor='w')
         
-        
+        self.rdbplus.invoke()
         
         ######Entry
         
         self.lblfr = LabelFrame(self, text='Příklad')
         self.lblfr.pack(anchor='w')
-        
-        self.inta = IntVar()
-        self.inta.set('')
-        
+                
         self.entcisloa = Entry(self.lblfr,state='readonly', text=None, width=5, font='Arial 20', textvariable=self.inta)
         self.entcisloa.grid(row=1, column=1)
         
         self.znammess = Message(self.lblfr, font='Arial 20', textvariable=self.v)
         self.znammess.grid(row=1, column=2)
-        
-        self.intb = IntVar()
-        self.intb.set('')
-        
+                
         self.entcislob = Entry(self.lblfr,state='readonly', text=None, width=5, font='Arial 20', textvariable=self.intb)
         self.entcislob.grid(row=1, column=3)
         
         self.rovmess = Message(self.lblfr, text=u'=', font='Arial 20')
         self.rovmess.grid(row=1, column=4)
-        
-        self.intvys = StringVar()
-        self.intvys.set('')
-        
+                
         self.entcislob = Entry(self.lblfr,state='readonly', text=None, width=5, font='Arial 20', textvariable=self.intvys)
         self.entcislob.grid(row=1, column=5)
         
@@ -75,9 +84,6 @@ class Application(tk.Tk):
         
         self.vypButton = tk.Button(self, text='Výpočet', command=self.vypocet)
         self.vypButton.pack()
-        
-        self.intuzi = StringVar()
-        self.intuzi.set('')
         
         self.entvys = Entry(self, text=None, width=5, font='Arial 20', textvariable=self.intuzi)
         self.entvys.pack()
@@ -94,17 +100,11 @@ class Application(tk.Tk):
         self.sprmess = Message(self.lblfrstat, text='Správně:', font='Arial 18',pady=25)
         self.sprmess.grid(row=1,column=1)
         
-        self.intspr = IntVar()
-        self.intspr.set(0)
-        
         self.entvys = Entry(self.lblfrstat, text=None, width=3, font='Arial 20', textvariable=self.intspr, fg='white', bg='green')
         self.entvys.grid(row=1,column=2)
         
         self.spamess = Message(self.lblfrstat, text='Špatně:', font='Arial 18',pady=25)
         self.spamess.grid(row=1, column=3)
-        
-        self.intspa = IntVar()
-        self.intspa.set(0)
         
         self.entvys = Entry(self.lblfrstat, text=None, width=3, font='Arial 20', textvariable=self.intspa, fg='white', bg='red')
         self.entvys.grid(row=1,column=4)
@@ -187,5 +187,3 @@ class Application(tk.Tk):
 
 app = Application()
 app.mainloop()
-
-
